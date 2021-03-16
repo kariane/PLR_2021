@@ -17,13 +17,44 @@ function renderData() {
 
 	let target = salario * valorCargo;
 
+	let flag = 0;
+	let marea=0;
+	let time3=0;
+	let gestor3=0;
+	let discriflag=0;
+	let porcflag=0;
+	let porcentmarea=0;
+	let porcenttime=0;
+	let porcentgestor=0;
+	let porcentdiscri=0;
+	if (indexCargo == 3) {
+		flag = PLR_base_BP_gerente(target);
+		marea=PLR_Meta_area_gerente(target, valorArea);
+		time3=PLR_360_time_gerente(target, time);
+		gestor3=PLR_360_gestor_gerente(target, gestor);
+		discriflag=PLR_final_discricionario_gerente(target, discricionario);
+		porcflag="30%";
+		porcentmarea="40%";
+		porcenttime="6%";
+		porcentgestor="9%";
+		porcentdiscri="15%";
+	} else {
+		flag = PLR_base_BP_anaesp(target);
+		marea=PLR_Meta_area_anaesp(target, valorArea);
+		time3=PLR_360_time_anaesp(target, time);
+		gestor3=PLR_360_gestor_anaesp(target, gestor);
+		discriflag=PLR_final_discricionario_anaesp(target, discricionario);
+		porcflag="20%";
+		porcentmarea="30%";
+		porcenttime="10%";
+		porcentgestor="15%";
+		porcentdiscri="25%";
+	}
+
+	
 	const vfinal =
-		calibragem +
-		PLR_final_discricionario(target, discricionario) +
-		PLR_360_gestor(target, gestor) +
-		PLR_360_time(target, time) +
-		PLR_Meta_area(target, valorArea) +
-		PLR_base_BP(target)
+		calibragem +discriflag +gestor3+time3 + marea+ flag
+
 
 	const template = `
 		<ul style="color: #5c5c5c">Salário
@@ -38,23 +69,39 @@ function renderData() {
 		<ul style="color: #5c5c5c"> Porcentagem de atingimento Meta área
 			<li>${valorArea}</li>
 		</ul>
+		
 		<ul style="color: #5c5c5c">Quantidade de dias trabalhados
 			<li>${diasTrabalhados}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Valor do PLR com base no BP
-			<li>${PLR_base_BP(target).toFixed(2)}</li>
+		<ul style="color: #5c5c5c">Porcentagem peso Meta corporativa
+			<li>${porcflag}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Valor PLR com Meta área
-			<li>${PLR_Meta_area(target, valorArea)}</li>
+		<ul style="color: #5c5c5c">Valor do PLR com base no BP
+			<li>${flag.toFixed(2)}</li>
+		</ul>
+		<ul style="color: #5c5c5c">Porcentagem peso Meta Área
+			<li>${porcentmarea}</li>
+		</ul>
+		<ul style="color: #5c5c5c">Valor PLR com Meta Área
+			<li>${marea.toFixed(2)}</li>
+		</ul>
+		<ul style="color: #5c5c5c">Porcentagem peso 360 do time
+			<li>${porcenttime}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Valor do PLR com base na 360 do time
-			<li>${PLR_360_time(target, time)}</li>
+			<li>${time3.toFixed(2)}</li>
+		</ul>
+		<ul style="color: #5c5c5c">Porcentagem peso 360 do gestor
+			<li>${porcentgestor}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Valor do PLR com base na 360 do gestor
-			<li>${PLR_360_gestor(target, gestor)}</li>
+			<li>${gestor3.toFixed(2)}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Valor final do discricionario
-			<li>${PLR_final_discricionario(target, discricionario)}</li>
+		<ul style="color: #5c5c5c">Porcentagem peso do discricionário
+			<li>${porcentdiscri}</li>
+		</ul>
+		<ul style="color: #5c5c5c">Valor final do discricionário
+			<li>${discriflag.toFixed(2)}</li>
 		</ul>
 		<ul style="color: #5c5c5c"><strong>Resultado</strong>
 			<li>${(vfinal / 365 * diasTrabalhados).toFixed(2)}</li>
@@ -64,7 +111,17 @@ function renderData() {
 	resultado.innerHTML = template;
 }
 
-const PLR_base_BP = (target) => {
+
+const PLR_base_BP =(target)=>{
+	const porcentqueoBPrep = 0.2;
+  const atingimento_do_BP = 0.9972;
+  const valor_BPrep = target * porcentqueoBPrep;
+
+  return valor_BPrep * atingimento_do_BP;
+}
+
+
+const PLR_base_BP_anaesp = (target) => {
 	const porcentqueoBPrep = 0.2;
 	const atingimento_do_BP = 0.9972;
 	const valor_BPrep = target * porcentqueoBPrep;
@@ -72,31 +129,69 @@ const PLR_base_BP = (target) => {
 	return valor_BPrep * atingimento_do_BP;
 };
 
-const PLR_Meta_area = (target, area) => {
+
+const PLR_base_BP_gerente = (target) => {
+	const porcentqueoBPrep = 0.3;
+	const atingimento_do_BP = 0.9972;
+	const valor_BPrep = target * porcentqueoBPrep;
+
+	return valor_BPrep * atingimento_do_BP;
+};
+
+
+const PLR_Meta_area_anaesp = (target, area) => {
 	const totalquerepMetaArea = 0.3;
 	const valorqueoBPrepMetaArea = target * totalquerepMetaArea;
 
 	return valorqueoBPrepMetaArea * (area / 100);
 };
+const PLR_Meta_area_gerente = (target, area) => {
+	const totalquerepMetaArea = 0.4;
+	const valorqueoBPrepMetaArea = target * totalquerepMetaArea;
 
-const PLR_360_time = (target, time) => {
+	return valorqueoBPrepMetaArea * (area / 100);
+};
+
+
+const PLR_360_time_anaesp = (target, time) => {
 	const porcent_time = 0.1;
 	const valor_alvo_time = target * porcent_time;
 	const resultante_notatime = time / 5;
 
 	return valor_alvo_time * resultante_notatime;
 };
+const PLR_360_time_gerente = (target, time) => {
+	const porcent_time = 0.06;
+	const valor_alvo_time = target * porcent_time;
+	const resultante_notatime = time / 5;
 
-const PLR_360_gestor = (target, gestor) => {
+	return valor_alvo_time * resultante_notatime;
+};
+
+
+const PLR_360_gestor_anaesp = (target, gestor) => {
 	const porcent_gestor = 0.15;
 	const vagestor = target * porcent_gestor;
 	const resultante_nota_gestor = gestor / 5;
 
 	return vagestor * resultante_nota_gestor;
 };
+const PLR_360_gestor_gerente = (target, gestor) => {
+	const porcent_gestor = 0.09;
+	const vagestor = target * porcent_gestor;
+	const resultante_nota_gestor = gestor / 5;
 
-const PLR_final_discricionario = (target, discricionario) => {
+	return vagestor * resultante_nota_gestor;
+};
+
+const PLR_final_discricionario_anaesp = (target, discricionario) => {
 	const porc_discri = 0.25;
+	const vadiscri = target * porc_discri;
+
+	return vadiscri * (discricionario / 100);
+};
+const PLR_final_discricionario_gerente = (target, discricionario) => {
+	const porc_discri = 0.15;
 	const vadiscri = target * porc_discri;
 
 	return vadiscri * (discricionario / 100);
