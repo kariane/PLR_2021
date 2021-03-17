@@ -57,7 +57,7 @@ function renderData() {
 			<li>${valorCargo}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Valor do target
-		<li>${target}</li>
+		<li>${target.toFixed(2)}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Atingimento Meta Youse
 			<li>${porcentagemYouse}</li>
