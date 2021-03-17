@@ -63,7 +63,7 @@ function renderData() {
 		<ul style="color: #5c5c5c">Valor do target
 		<li>${target}</li>
 		</ul>
-		<ul style="color: #5c5c5c"> atingimento Meta Youse
+		<ul style="color: #5c5c5c">Atingimento Meta Youse
 			<li>${porcentagemYouse}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Valor do PLR com base na Meta Youse
