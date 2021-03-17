@@ -70,9 +70,9 @@ function renderData() {
 			<li>${flag.toFixed(2)}</li>
 		</ul>		
 		<ul style="color: #5c5c5c">Atingimento Meta Área
-			<li>${valorArea,"%"}</li>
+			<li>${valorArea+"%"}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Valor do PLR com Meta Área
+		<ul style="color: #5c5c5c">Valor do PLR com base na Meta Área
 			<li>${marea.toFixed(2)}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Valor do PLR com base na 360 do gestor
@@ -82,16 +82,16 @@ function renderData() {
 			<li>${time3.toFixed(2)}</li>
 		</ul>
 
-		<ul style="color: #5c5c5c">Valor final do discricionário
+		<ul style="color: #5c5c5c">Valor do discricionário
 			<li>${discriflag.toFixed(2)}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Valor Calibragem
+		<ul style="color: #5c5c5c">Valor da Calibragem
 		<li>${calibragem}</li>
 	</ul>
 		<ul style="color: #5c5c5c">Quantidade de dias trabalhados
 			<li>${diasTrabalhados}</li>
 		</ul>
-		<ul style="color: #5c5c5c"><strong>Resultado</strong>
+		<ul style="color: #5c5c5c"><strong>Valor bruto do PLR</strong>
 			<li>${(vfinal / 365 * diasTrabalhados).toFixed(2)}</li>
 		</ul>
 	`;
