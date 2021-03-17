@@ -38,17 +38,14 @@ function renderData() {
 		porcenttime="6%";
 		porcentgestor="9%";
 		porcentdiscri="15%";
+		porcentagemYouse="99,72%";
 	} else {
 		flag = PLR_base_BP_anaesp(target);
 		marea=PLR_Meta_area_anaesp(target, valorArea);
 		time3=PLR_360_time_anaesp(target, time);
 		gestor3=PLR_360_gestor_anaesp(target, gestor);
 		discriflag=PLR_final_discricionario_anaesp(target, discricionario);
-		porcflag="20%";
-		porcentmarea="30%";
-		porcenttime="10%";
-		porcentgestor="15%";
-		porcentdiscri="25%";
+		porcentagemYouse="99,72%";
 	}
 
 	
@@ -66,42 +63,33 @@ function renderData() {
 		<ul style="color: #5c5c5c">Valor do target
 		<li>${target}</li>
 		</ul>
-		<ul style="color: #5c5c5c"> Porcentagem de atingimento Meta área
-			<li>${valorArea}</li>
+		<ul style="color: #5c5c5c"> atingimento Meta Youse
+			<li>${porcentagemYouse}</li>
 		</ul>
-		
-		<ul style="color: #5c5c5c">Quantidade de dias trabalhados
-			<li>${diasTrabalhados}</li>
-		</ul>
-		<ul style="color: #5c5c5c">Porcentagem peso Meta corporativa
-			<li>${porcflag}</li>
-		</ul>
-		<ul style="color: #5c5c5c">Valor do PLR com base no BP
+		<ul style="color: #5c5c5c">Valor do PLR com base na Meta Youse
 			<li>${flag.toFixed(2)}</li>
+		</ul>		
+		<ul style="color: #5c5c5c">Atingimento Meta Área
+			<li>${valorArea,"%"}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Porcentagem peso Meta Área
-			<li>${porcentmarea}</li>
-		</ul>
-		<ul style="color: #5c5c5c">Valor PLR com Meta Área
+		<ul style="color: #5c5c5c">Valor do PLR com Meta Área
 			<li>${marea.toFixed(2)}</li>
-		</ul>
-		<ul style="color: #5c5c5c">Porcentagem peso 360 do time
-			<li>${porcenttime}</li>
-		</ul>
-		<ul style="color: #5c5c5c">Valor do PLR com base na 360 do time
-			<li>${time3.toFixed(2)}</li>
-		</ul>
-		<ul style="color: #5c5c5c">Porcentagem peso 360 do gestor
-			<li>${porcentgestor}</li>
 		</ul>
 		<ul style="color: #5c5c5c">Valor do PLR com base na 360 do gestor
 			<li>${gestor3.toFixed(2)}</li>
 		</ul>
-		<ul style="color: #5c5c5c">Porcentagem peso do discricionário
-			<li>${porcentdiscri}</li>
+		<ul style="color: #5c5c5c">Valor do PLR com base na 360 do time
+			<li>${time3.toFixed(2)}</li>
 		</ul>
+
 		<ul style="color: #5c5c5c">Valor final do discricionário
 			<li>${discriflag.toFixed(2)}</li>
+		</ul>
+		<ul style="color: #5c5c5c">Valor Calibragem
+		<li>${calibragem}</li>
+	</ul>
+		<ul style="color: #5c5c5c">Quantidade de dias trabalhados
+			<li>${diasTrabalhados}</li>
 		</ul>
 		<ul style="color: #5c5c5c"><strong>Resultado</strong>
 			<li>${(vfinal / 365 * diasTrabalhados).toFixed(2)}</li>
