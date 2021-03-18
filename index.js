@@ -22,14 +22,7 @@ function renderData() {
 	let time3=0;
 	let gestor3=0;
 	let discriflag=0;
-	if(diasTrabalhados=366){
-		diasTrabalhados=365;
-	}
-	else{
-		diasTrabalhados;
-	}
-
-	if (indexCargo == 3 || indexCargo == 4 ||indexCargo == 5) {
+		if (indexCargo == 3 || indexCargo == 4 ||indexCargo == 5) {
 		flag = PLR_base_BP_gerente(target);
 		marea=PLR_Meta_area_gerente(target, valorArea);
 		time3=PLR_360_time_gerente(target, time);
