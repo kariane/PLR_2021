@@ -22,7 +22,7 @@ function renderData() {
 	let time3=0;
 	let gestor3=0;
 	let discriflag=0;
-	if(diasTrabalhados>365){
+	if(diasTrabalhados=366){
 		diasTrabalhados=365;
 	}
 	else{
