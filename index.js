@@ -16,7 +16,13 @@ function renderData() {
 	const valorArea = area.options[indexArea].value;
 
 	let target = salario * valorCargo;
-
+	let dt=0;
+	if (diasTrabalhados>365){
+		dt=365;
+	}
+	else{
+		dt=diasTrabalhados;
+	}
 	let flag = 0;
 	let marea=0;
 	let time3=0;
@@ -87,7 +93,7 @@ function renderData() {
 			<li>${diasTrabalhados}</li>
 		</ul>
 		<ul style="color: #5c5c5c"><strong>Valor bruto do PLR</strong>
-			<li>${(vfinal / 365 * diasTrabalhados).toFixed(2)}</li>
+			<li>${(vfinal / 365 * dt).toFixed(2)}</li>
 		</ul>
 	`;
 
