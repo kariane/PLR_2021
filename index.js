@@ -22,6 +22,12 @@ function renderData() {
 	let time3=0;
 	let gestor3=0;
 	let discriflag=0;
+	if(diasTrabalhados>365){
+		diasTrabalhados=365;
+	}
+	else{
+		diasTrabalhados;
+	}
 
 	if (indexCargo == 3 || indexCargo == 4 ||indexCargo == 5) {
 		flag = PLR_base_BP_gerente(target);
