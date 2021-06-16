@@ -15,6 +15,7 @@ function renderData() {
 	const indexArea = area.options.selectedIndex;
 	const valorArea = area.options[indexArea].value;
 
+	
 	let target = salario * valorCargo;
 	let dt=0;
 	if (diasTrabalhados>365){
